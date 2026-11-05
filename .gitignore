@@ -46,3 +46,6 @@ test-results/
 *.pem
 *.key
 secrets.json
+
+# TypeScript incremental build cache
+*.tsbuildinfo
