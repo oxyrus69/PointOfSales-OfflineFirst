@@ -1,0 +1,342 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------------- */
+/*  Design tokens — Katalis POS                                              */
+/*  Anchor: Vercel restraint (hairlines, mono numerals, one accent), warmed  */
+/*  into a retail till. No gradients, no glass, no glow.                     */
+/* ------------------------------------------------------------------------- */
+
+@theme {
+  /* Neutrals: one tight ramp, 9 steps */
+  --color-ink-950: #121110;
+  --color-ink-900: #1b1a18;
+  --color-ink-850: #232120;
+  --color-ink-800: #2c2a27;
+  --color-ink-700: #3d3a36;
+  --color-ink-600: #55514c;
+  --color-ink-500: #6f6a63;
+  --color-ink-400: #918b83;
+  --color-ink-300: #b6b0a7;
+  --color-ink-200: #d8d3ca;
+  --color-ink-100: #e9e5df;
+  --color-ink-50: #f6f4f1;
+  --color-paper: #fdfcfa;
+
+  /* One accent: catalyst vermillion */
+  --color-flame-700: #8f320c;
+  --color-flame-600: #ab3d10;
+  --color-flame-500: #c24a12;
+  --color-flame-100: #fbe8dd;
+  --color-flame-50: #fdf2ea;
+
+  /* Semantic, used only for state */
+  --color-grove-700: #14603a;
+  --color-grove-600: #17753f;
+  --color-grove-100: #dff0e5;
+  --color-alert-700: #a32118;
+  --color-alert-600: #c02a1e;
+  --color-alert-100: #fbe3e0;
+  --color-caution-700: #8a5a06;
+  --color-caution-100: #fbeed3;
+  --color-signal-700: #1a4b8f;
+  --color-signal-100: #e2ecfa;
+
+  --font-sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Cascadia Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  --shadow-panel: 0 1px 2px rgba(18, 17, 16, 0.06), 0 8px 24px -16px rgba(18, 17, 16, 0.28);
+  --shadow-lift: 0 2px 4px rgba(18, 17, 16, 0.08), 0 18px 40px -24px rgba(18, 17, 16, 0.4);
+
+  --ease-settle: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------------- */
+/*  Base                                                                     */
+/* ------------------------------------------------------------------------- */
+
+@layer base {
+  * {
+    border-color: var(--color-ink-100);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background: var(--color-ink-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.018em;
+    line-height: 1.18;
+    text-wrap: balance;
+  }
+
+  h1 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.015em; }
+  h2 { font-size: 1rem; font-weight: 600; }
+  h3 { font-size: 0.875rem; font-weight: 600; letter-spacing: -0.005em; }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-flame-500);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-flame-100);
+    color: var(--color-ink-900);
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  table { border-collapse: separate; border-spacing: 0; }
+}
+
+/* ------------------------------------------------------------------------- */
+/*  Utilities                                                                */
+/* ------------------------------------------------------------------------- */
+
+@utility num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+@utility label-xs {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+}
+
+/* ------------------------------------------------------------------------- */
+/*  Composed classes                                                         */
+/* ------------------------------------------------------------------------- */
+
+/* Surfaces: edge OR shadow, never both (hairline = default for panels). */
+.surface {
+  background: var(--color-paper);
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-lg);
+}
+
+.panel {
+  background: var(--color-paper);
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-lg);
+}
+
+/* Floating overlays are the only place a shadow is justified. */
+.overlay {
+  background: var(--color-paper);
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lift);
+}
+
+.hairline-row + .hairline-row {
+  border-top: 1px solid var(--color-ink-100);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4375rem;
+  font-size: 0.8125rem;
+  font-weight: 550;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  transition: background-color 140ms var(--ease-settle), border-color 140ms var(--ease-settle),
+    color 140ms var(--ease-settle), transform 140ms var(--ease-settle);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:active { transform: translateY(0.5px); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.btn-primary {
+  background: var(--color-ink-900);
+  color: var(--color-paper);
+}
+.btn-primary:hover:not(:disabled) { background: var(--color-ink-800); }
+
+.btn-accent {
+  background: var(--color-flame-600);
+  color: #fff;
+}
+.btn-accent:hover:not(:disabled) { background: var(--color-flame-700); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink-700);
+  border-color: var(--color-ink-200);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--color-ink-50);
+  border-color: var(--color-ink-300);
+  color: var(--color-ink-900);
+}
+
+.btn-danger {
+  background: var(--color-alert-600);
+  color: #fff;
+}
+.btn-danger:hover:not(:disabled) { background: var(--color-alert-700); }
+
+.btn-quiet {
+  background: transparent;
+  color: var(--color-ink-600);
+  padding: 0.375rem 0.5rem;
+  border-radius: var(--radius-xs);
+}
+.btn-quiet:hover:not(:disabled) { background: var(--color-ink-100); color: var(--color-ink-900); }
+
+.field {
+  width: 100%;
+  background: var(--color-paper);
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-sm);
+  padding: 0.4375rem 0.5625rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--color-ink-900);
+  transition: border-color 140ms var(--ease-settle), box-shadow 140ms var(--ease-settle);
+}
+.field::placeholder { color: var(--color-ink-400); }
+.field:focus {
+  outline: none;
+  border-color: var(--color-ink-700);
+  box-shadow: 0 0 0 3px rgba(194, 74, 18, 0.12);
+}
+
+.field-mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.1875rem 0.4375rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.tag-neutral { background: var(--color-ink-100); color: var(--color-ink-700); }
+.tag-accent { background: var(--color-flame-50); color: var(--color-flame-700); border-color: var(--color-flame-100); }
+.tag-grove { background: var(--color-grove-100); color: var(--color-grove-700); }
+.tag-alert { background: var(--color-alert-100); color: var(--color-alert-700); }
+.tag-caution { background: var(--color-caution-100); color: var(--color-caution-700); }
+.tag-signal { background: var(--color-signal-100); color: var(--color-signal-700); }
+
+/* Enterprise density: tables and operational forms sit at 12–13px UI text. */
+.data-table { width: 100%; font-size: 0.8125rem; }
+.data-table thead th {
+  text-align: left;
+  background: var(--color-ink-50);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+  padding: 0.4375rem 0.625rem;
+  border-bottom: 1px solid var(--color-ink-200);
+  white-space: nowrap;
+}
+.data-table tbody td {
+  padding: 0.5rem 0.625rem;
+  border-bottom: 1px solid var(--color-ink-100);
+  vertical-align: middle;
+}
+.data-table tbody tr:hover { background: var(--color-ink-50); }
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-300) transparent;
+}
+.scroll-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--color-ink-200);
+  border-radius: var(--radius-pill);
+}
+
+/* POS terminal shell: the dark till bezel, not a decorative gradient */
+.till-shell {
+  background: var(--color-ink-950);
+  color: var(--color-ink-100);
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.375rem;
+  height: 1.1875rem;
+  padding: 0 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  border: 1px solid currentColor;
+  opacity: 0.66;
+}
+
+/* Receipt / thermal print */
+.thermal {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: #111;
+  background: #fff;
+}
+
+@media print {
+  @page { margin: 0; }
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .print-sheet { box-shadow: none !important; border: 0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

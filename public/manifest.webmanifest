@@ -1,0 +1,32 @@
+{
+  "name": "Katalis POS",
+  "short_name": "Katalis",
+  "description": "Terminal kasir ritel offline-first: transaksi tetap jalan saat internet putus.",
+  "start_url": "/pos",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#f6f4f1",
+  "theme_color": "#121110",
+  "lang": "id",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Terminal Kasir", "url": "/pos" },
+    { "name": "Antrean Sinkronisasi", "url": "/pos/sync" },
+    { "name": "Shift Saya", "url": "/shifts" }
+  ]
+}

@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build & framework output
+.next/
+out/
+build/
+dist/
+.turbo/
+next-env.d.ts.bak
+
+# Database (PGlite data dirs, local dumps, backups)
+.data/
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+
+# Environment — keep the example only
+.env
+.env.*
+!.env.example
+
+# Agent & editor artefacts
+.openchamber/
+screenshots/
+*.log
+dev.log
+e2e-out.txt
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Test / coverage
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Secrets
+*.pem
+*.key
+secrets.json

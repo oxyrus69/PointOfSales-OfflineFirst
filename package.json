@@ -1,0 +1,40 @@
+{
+  "name": "katalis-pos",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Katalis POS — Offline-First Retail POS, Shift Reconciliation & Retail DSS",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node scripts/db-migrate.mjs",
+    "db:seed": "node scripts/seed.mjs",
+    "secrets:generate": "node scripts/generate-secrets.mjs",
+    "e2e": "node --import ./scripts/lib/register-alias.mjs scripts/e2e-verify.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.2.17",
+    "@tanstack/react-table": "^8.20.6",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.38.3",
+    "lucide-react": "^0.469.0",
+    "next": "15.1.6",
+    "postgres": "^3.4.5",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "recharts": "^2.15.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "drizzle-kit": "^0.30.1",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3"
+  }
+}
